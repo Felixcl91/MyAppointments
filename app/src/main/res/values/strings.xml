@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">S.R.Citas</string>
+    <string name="label_login">Log in</string>
+    <string name="label_email">Email</string>
+    <string name="label_password">Passwword</string>
+    <string name="label_go_to_register">¿Aún no te has registrado?</string>
+    <string name="label_register">Register</string>
+    <string name="label_go_to_login">¿Ya tienes una cuenta?</string>
+    <string name="label_name">Nombre completo</string>
+    <string name="please_fill_your_data">Por favor introduce tus datos</string>
+    <string name="registrer_appointment">Reservar cita</string>
+    <string name="my_appointments">Mis citas</string>
+    <string name="logout">Cerrar sesión</string>
+    <string name="label_welcome">Bienvenido</string>
+    <string name="label_create_appoinment">Reservar cita</string>
+    <string name="label_description">Descripción</string>
+    <string name="label_speciality">Especialidad</string>
+    <string name="label_type">Tipo de cita</string>
+    <string name="type1">Consulta</string>
+    <string name="type2">Examen</string>
+    <string name="type3">Operación</string>
+    <string name="btn_next">Siguiente</string>
+    <string name="label_doctor">Doctor</string>
+    <string name="schedule_date">Fecha para la cita</string>
+    <string name="time1">8.00</string>
+    <string name="time2">8:30</string>
+    <string name="time3">9:00</string>
+    <string name="time4">9:30</string>
+    <string name="time5">10:00</string>
+    <string name="time6">10:30</string>
+    <string name="time7">11:00</string>
+    <string name="time8">11:30</string>
+    <string name="time9">3:00</string>
+    <string name="time10">3:30</string>
+    <string name="time11">4:00</string>
+    <string name="time12">4:30</string>
+    <string name="time13">5:00</string>
+    <string name="time14">5:30</string>
+    <string name="time15">6:00</string>
+
+    <string name="date_format">%1$s-%2$s-%3$s</string>
+    <string name="item_appointment_id">Cita médica %1$d</string>
+    <string name="item_appointment_date">Atención el día %1$s</string>
+    <string name="item_appointment_time">A las %1$s</string>
+    <string name="label_my_appointments">Mis citas médicas</string>
+</resources>
