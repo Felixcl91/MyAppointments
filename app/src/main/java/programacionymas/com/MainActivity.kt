@@ -5,13 +5,17 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 import programacionymas.com.PreferenceHelper.get
 import programacionymas.com.PreferenceHelper.set
 
 class MainActivity : AppCompatActivity() {
 
-    val session = true
+    //con lazy podemos inizializar una variable de manera perezosa y entonces cuando se requiera se inicializa y no al ejecutar
+    private val snackBar by lazy {
+        Snackbar.make(mainLayout, R.string.press_back_again, Snackbar.LENGTH_SHORT)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,5 +59,14 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, MenuActivity::class.java)
         startActivity(intent)
         finish()
+    }
+
+    override fun onBackPressed() {
+        //if snackbar se muestra
+        if (snackBar.isShown)
+            super.onBackPressed()
+        else
+            snackBar.show()
+
     }
 }
