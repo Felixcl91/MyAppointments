@@ -1,10 +1,12 @@
-package programacionymas.com
+package programacionymas.com.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_menu.*
+import programacionymas.com.PreferenceHelper
 import programacionymas.com.PreferenceHelper.set
+import programacionymas.com.R
 
 class MenuActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +36,8 @@ class MenuActivity : AppCompatActivity() {
         val editor = preferences.edit()
         editor.putBoolean("session", true)
         editor.apply()*/
-        val preferences = PreferenceHelper.defaultPrefs(this)
+        val preferences =
+            PreferenceHelper.defaultPrefs(this)
         preferences["session"] = false
     }
 }

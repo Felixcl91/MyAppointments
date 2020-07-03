@@ -9,7 +9,7 @@
     app:cardUseCompatPadding="true"
     app:cardElevation="4dp"
     app:cardCornerRadius="3dp"
-    tools:context=".MenuActivity"
+    tools:context=".ui.MenuActivity"
     android:padding="16dp">
 
     <LinearLayout

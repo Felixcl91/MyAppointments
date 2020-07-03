@@ -6,13 +6,12 @@
     android:background="@drawable/bg_gradient"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".MenuActivity"
+    tools:context=".ui.MenuActivity"
     android:padding="16dp">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@drawable/bg_gradient"
         android:gravity="center"
         android:text="@string/label_welcome"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"

@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/createAppointmentLinearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:animateLayoutChanges="true"
     android:background="@drawable/bg_gradient"
-    android:orientation="vertical"
     android:gravity="center"
-    tools:context=".MainActivity"
+    android:orientation="vertical"
     android:padding="16dp"
-    android:animateLayoutChanges="true">
+    tools:context=".ui.MainActivity">
 
     <TextView
         android:layout_width="match_parent"
@@ -21,12 +22,12 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvStep1"
-        app:contentPadding="12dp"
-        app:cardCornerRadius="8dp"
-        android:elevation="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:elevation="8dp"
+        app:cardCornerRadius="8dp"
+        app:contentPadding="12dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -36,65 +37,73 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:text="@string/label_description"
-                android:textColor="@color/colorPrimaryDark"
-                android:layout_marginTop="8dp"/>
+                android:textColor="@color/colorPrimaryDark" />
 
             <EditText
                 android:id="@+id/etDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorPrimaryDark"/>
+                android:textColor="@color/colorPrimaryDark" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:text="@string/label_speciality"
-                android:textColor="@color/colorPrimaryDark"
-                android:layout_marginTop="8dp"/>
+                android:textColor="@color/colorPrimaryDark" />
 
             <Spinner
                 android:id="@+id/spinnerSpecialties"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"></Spinner>
+                android:layout_height="wrap_content"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:text="@string/label_type"
-                android:textColor="@color/colorPrimaryDark"
-                android:layout_marginTop="8dp"/>
+                android:textColor="@color/colorPrimaryDark" />
 
             <RadioGroup
+                android:id="@+id/radioGroupType"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:orientation="vertical"
-                android:layout_marginBottom="8dp">
+                android:checkedButton="@id/rbType1"
+                >
 
                 <RadioButton
-                    android:checked="true"
+                    android:id="@+id/rbType1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:checked="true"
                     android:text="@string/type1"
-                    android:textColor="@color/colorPrimaryDark"/>
+                    android:textColor="@color/colorPrimaryDark" />
+
                 <RadioButton
+                    android:id="@+id/rbType2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/type2"
-                    android:textColor="@color/colorPrimaryDark"/>
+                    android:textColor="@color/colorPrimaryDark" />
+
                 <RadioButton
+                    android:id="@+id/rbType3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/type3"
-                    android:textColor="@color/colorPrimaryDark"/>
+                    android:textColor="@color/colorPrimaryDark" />
 
                 <Button
                     android:id="@+id/btnNext"
+                    style="@style/MenuButton"
                     android:layout_width="match_parent"
                     android:layout_marginTop="14dp"
                     android:background="@color/colorAccent"
                     android:drawableEnd="@drawable/ic_baseline_navigate_next"
-                    style="@style/MenuButton"
                     android:text="@string/btn_next"
                     android:textColor="@color/white" />
 
@@ -106,13 +115,13 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvStep2"
-        android:visibility="gone"
-        app:contentPadding="12dp"
-        app:cardCornerRadius="8dp"
-        android:elevation="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:elevation="8dp"
+        android:visibility="gone"
+        app:cardCornerRadius="8dp"
+        app:contentPadding="12dp">
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -126,30 +135,30 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/label_doctor"
-                    android:layout_marginTop="8dp"/>
+                    android:layout_marginTop="8dp"
+                    android:text="@string/label_doctor" />
 
                 <Spinner
-                    android:id="@+id/spinnerDocors"
+                    android:id="@+id/spinnerDoctors"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"></Spinner>
+                    android:layout_height="wrap_content"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:text="@string/schedule_date"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:layout_marginTop="8dp"/>
+                    android:textColor="@color/colorPrimaryDark" />
 
                 <EditText
                     android:id="@+id/etScheduledDate"
-                    android:onClick="onclickScheduledDate"
-                    android:inputType="date"
-                    android:focusable="false"
-                    android:clickable="true"
-                    android:maxLines="1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:inputType="date"
+                    android:maxLines="1"
+                    android:onClick="onclickScheduledDate"
                     tools:ignore="OnClick" />
 
                 <LinearLayout
@@ -160,32 +169,32 @@
                     <LinearLayout
                         android:id="@+id/radioGroupLeft"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginBottom="8dp">
+                        android:layout_marginBottom="8dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
                         <RadioButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/time1"
-                            android:textColor="@color/colorPrimaryDark"/>
+                            android:textColor="@color/colorPrimaryDark" />
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/radioGroupRight"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginBottom="8dp">
+                        android:layout_marginBottom="8dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
                         <RadioButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/time1"
-                            android:textColor="@color/colorPrimaryDark"/>
+                            android:textColor="@color/colorPrimaryDark" />
 
                     </LinearLayout>
 
@@ -193,17 +202,190 @@
                 </LinearLayout>
 
                 <Button
+                    android:id="@+id/btnNext2"
+                    style="@style/MenuButton"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="14dp"
+                    android:background="@color/colorAccent"
+                    android:drawableEnd="@drawable/ic_baseline_navigate_next"
+                    android:text="@string/btn_next"
+                    android:textColor="@color/white"  />
+
+            </LinearLayout>
+
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvStep3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:elevation="8dp"
+        android:visibility="gone"
+        app:cardCornerRadius="8dp"
+        app:contentPadding="12dp">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:text="@string/label_confirm_appointment_data"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"/>
+
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:text="@string/label_confirm_appointment_descrip"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        />
+
+                    <TextView
+                        android:id="@+id/tvConfirmDescription"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        tools:text="Dolor de cabeza"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:text="@string/label_confirm_appointment_specialty"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        />
+
+                    <TextView
+                        android:id="@+id/tvConfirmSpecialty"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        tools:text="Oftalmología"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:text="@string/label_confirm_appointment_type"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        />
+
+                    <TextView
+                        android:id="@+id/tvConfirmType"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        tools:text="Consulta"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:text="@string/label_confirm_appointment_doctor"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        />
+
+                    <TextView
+                        android:id="@+id/tvConfirmDoctor"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        tools:text="Médico test"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:text="@string/label_confirm_appointment_date"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        />
+
+                    <TextView
+                        android:id="@+id/tvConfirmDate"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        tools:text="29/12/2020"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:text="@string/label_confirm_appointment_time"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        />
+
+                    <TextView
+                        android:id="@+id/tvConfirmTime"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        tools:text="4:30 PM"/>
+
+                </LinearLayout>
+
+                <Button
                     android:id="@+id/btnConfirm"
+                    style="@style/MenuButton"
                     android:layout_width="match_parent"
                     android:layout_marginTop="14dp"
                     android:background="@color/colorAccent"
                     android:drawableEnd="@drawable/ic_check"
-                    style="@style/MenuButton"
-                    android:text="@string/btn_next"
-                    android:textColor="@color/white" />
+                    android:text="@string/btn_conf"
+                    android:textColor="@color/white"  />
 
             </LinearLayout>
-
 
 
         </androidx.core.widget.NestedScrollView>

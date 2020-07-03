@@ -1,9 +1,10 @@
-package programacionymas.com
+package programacionymas.com.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_appointments.*
+import programacionymas.com.R
 import programacionymas.com.model.Appointment
 
 class AppointmentsActivity : AppCompatActivity() {
@@ -26,6 +27,7 @@ class AppointmentsActivity : AppCompatActivity() {
         )
 
         rvAppointments.layoutManager = LinearLayoutManager(this)
-        rvAppointments.adapter = AppointmentAdapter(appointments)
+        rvAppointments.adapter =
+            AppointmentAdapter(appointments)
     }
 }
