@@ -15,6 +15,7 @@ import programacionymas.com.R
 import programacionymas.com.io.ApiService
 import programacionymas.com.model.Specialty
 import retrofit2.Call
+
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
@@ -67,14 +68,19 @@ class CreateAppointmentActivity : AppCompatActivity() {
 
         loadSpecialties()
 
+        /*val specialtyOptions = arrayOf("a", "b", "c")
+        spinnerSpecialties.adapter =
+            ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, specialtyOptions)
+
         val doctorOptions = arrayOf("Doctor A", "Doctor B", "Doctor C")
         spinnerDoctors.adapter =
-            ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, doctorOptions)
+            ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, doctorOptions)*/
     }
 
     private fun loadSpecialties() {
         val call = apiService.getSpecialties()
         call.enqueue(object : Callback<ArrayList<Specialty>> { // object expression
+
             override fun onFailure(call: Call<ArrayList<Specialty>>, t: Throwable) {
                 Toast.makeText(
                     this@CreateAppointmentActivity,

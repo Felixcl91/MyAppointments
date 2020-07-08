@@ -60,4 +60,6 @@
     <string name="validate_appointment_date">Es necesario seleccionar una fecha</string>
     <string name="validate_appointment_time">Es necesario definir una hora para la cita</string>
     <string name="error_loading_specialty">Ocurrio un problema al cargar las especialidades</string>
+    <string name="error_login_response">Se obtuvo una respuesta inesperada del servidor</string>
+    <string name="error_invalid_credentials">Las credenciales son incorrectas</string>
 </resources>
