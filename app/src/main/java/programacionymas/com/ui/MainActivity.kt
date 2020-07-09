@@ -42,14 +42,14 @@ class MainActivity : AppCompatActivity() {
         val session = preferences.getBoolean("session", false)
         val preferences =
             PreferenceHelper.defaultPrefs(this)
-        if (preferences["session", ""].contains("."))
+        if (preferences["session", "false"].contains("."))
             goToMenuActivity()*/
 
         btnLogin.setOnClickListener {
             // validate
             createSessionPreference()
             goToMenuActivity()
-            //performLogin()
+            performLogin()
 
         }
 
@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    /*private fun performLogin() {
+    private fun performLogin() {
         val call = apiService.postLogin(etEmail.text.toString(), etPassword.text.toString())
         call.enqueue(object: Callback<LoginResponse> {
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
@@ -89,16 +89,16 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
-    }*/
+    }
 
     private fun createSessionPreference() {
-        val preferences = getSharedPreferences("general", Context.MODE_PRIVATE)
-        val editor = preferences.edit()
-        editor.putBoolean("session", true)
-        editor.apply()
-        /*val preferences =
-            PreferenceHelper.defaultPrefs(this)
-        preferences["session"] = false*/
+        /* val preferences = getSharedPreferences("general", Context.MODE_PRIVATE)
+         val editor = preferences.edit()
+         editor.putBoolean("session", true)
+         editor.apply()*/
+         val preferences =
+             PreferenceHelper.defaultPrefs(this)
+         preferences["session"] = false
     }
 
     private fun goToMenuActivity() {
