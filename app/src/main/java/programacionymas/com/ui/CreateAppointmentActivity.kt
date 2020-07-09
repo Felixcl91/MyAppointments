@@ -5,6 +5,8 @@ import android.app.AlertDialog
 import android.app.DatePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -15,6 +17,7 @@ import kotlinx.android.synthetic.main.activity_create_appointment.*
 import programacionymas.com.R
 import programacionymas.com.io.ApiService
 import programacionymas.com.model.Doctor
+import programacionymas.com.model.Schedule
 import programacionymas.com.model.Specialty
 import retrofit2.Call
 
@@ -72,6 +75,8 @@ class CreateAppointmentActivity : AppCompatActivity() {
 
         listenSpecialtiesChanges()
 
+        listenDoctorsAndDateChanges()
+
         /*val specialtyOptions = arrayOf("a", "b", "c")
         spinnerSpecialties.adapter =
             ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, specialtyOptions)
@@ -79,6 +84,64 @@ class CreateAppointmentActivity : AppCompatActivity() {
         val doctorOptions = arrayOf("Doctor A", "Doctor B", "Doctor C")
         spinnerDoctors.adapter =
             ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, doctorOptions)*/
+    }
+
+    private fun listenDoctorsAndDateChanges() {
+        // escuchador con onItemSelectedListener
+        // doctors
+        spinnerDoctors.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(adapter: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val doctor = adapter?.getItemAtPosition(position) as Doctor
+                loadHour(doctor.id, etScheduledDate.text.toString())
+            }
+
+        }
+        // schedule date
+        etScheduledDate.addTextChangedListener(object: TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {
+
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+            // nos interesa este metodo para saber si el dato a cambiado
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                val doctor = spinnerDoctors.selectedItem as Doctor
+                loadHour(doctor.id, etScheduledDate.text.toString())
+            }
+
+        })
+    }
+
+    private fun loadHour(doctorId: Int, date: String) {
+        val call = apiService.getHours(doctorId, date)
+        call.enqueue(object: Callback<Schedule> {
+            override fun onFailure(call: Call<Schedule>, t: Throwable) {
+                Toast.makeText(
+                    this@CreateAppointmentActivity,
+                    getString(R.string.error_loading_hours),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+
+            override fun onResponse(call: Call<Schedule>, response: Response<Schedule>) {
+                if (response.isSuccessful) {
+                    val schedule = response.body()
+                    Toast.makeText(
+                        this@CreateAppointmentActivity,
+                        "morning: ${schedule?.morning?.size}, afternoon: ${schedule?.afternoon?.size} ",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+
+        })
+        //Toast.makeText(this, "doctors: $doctorId, date: $date", Toast.LENGTH_SHORT).show()
     }
 
     private fun loadSpecialties() {

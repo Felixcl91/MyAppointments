@@ -1,6 +1,5 @@
 package programacionymas.com.ui
 
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -40,15 +39,12 @@ class MainActivity : AppCompatActivity() {
 
         /*val preferences = getSharedPreferences("general", Context.MODE_PRIVATE)
         val session = preferences.getBoolean("session", false)
-        val preferences =
-            PreferenceHelper.defaultPrefs(this)
-        if (preferences["session", "false"].contains("."))
+        val preferences = PreferenceHelper.defaultPrefs(this)
+            if (preferences["jwt", ""].contains("."))
             goToMenuActivity()*/
 
         btnLogin.setOnClickListener {
             // validate
-            createSessionPreference()
-            goToMenuActivity()
             performLogin()
 
         }
@@ -77,7 +73,7 @@ class MainActivity : AppCompatActivity() {
                         return
                     }
                     if (loginResponse.success) {
-                        loginResponse.jwt
+                        createSessionPreference(loginResponse.jwt)
                         goToMenuActivity()
                     } else {
                         toast(getString(R.string.error_invalid_credentials))
@@ -91,14 +87,14 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private fun createSessionPreference() {
+    private fun createSessionPreference(jwt: String) {
         /* val preferences = getSharedPreferences("general", Context.MODE_PRIVATE)
          val editor = preferences.edit()
          editor.putBoolean("session", true)
          editor.apply()*/
          val preferences =
              PreferenceHelper.defaultPrefs(this)
-         preferences["session"] = false
+         preferences["jwt"] = jwt
     }
 
     private fun goToMenuActivity() {
