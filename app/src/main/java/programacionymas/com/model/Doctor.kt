@@ -1,6 +1,6 @@
 package programacionymas.com.model
 
-data class Specialty(
+data class Doctor(
     val id: Int,
     val name: String
 ) {

@@ -4,18 +4,23 @@ package programacionymas.com.io
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import programacionymas.com.io.response.LoginResponse
+import programacionymas.com.model.Doctor
 import programacionymas.com.model.Specialty
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
 
     @GET("specialties")
     fun getSpecialties() : Call<ArrayList<Specialty>>
+
+    @GET("specialties/{specialty}/doctors")
+    fun getDoctors(@Path("specialty") specialtyId: Int) : Call<ArrayList<Doctor>>
 
     @POST("login")
     fun postLogin(@Query("email") email: String, @Query("password") password: String) : Call<LoginResponse>

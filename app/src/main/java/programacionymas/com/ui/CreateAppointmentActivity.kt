@@ -6,6 +6,7 @@ import android.app.DatePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.RadioButton
 import android.widget.Toast
@@ -13,6 +14,7 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_create_appointment.*
 import programacionymas.com.R
 import programacionymas.com.io.ApiService
+import programacionymas.com.model.Doctor
 import programacionymas.com.model.Specialty
 import retrofit2.Call
 
@@ -68,6 +70,8 @@ class CreateAppointmentActivity : AppCompatActivity() {
 
         loadSpecialties()
 
+        listenSpecialtiesChanges()
+
         /*val specialtyOptions = arrayOf("a", "b", "c")
         spinnerSpecialties.adapter =
             ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, specialtyOptions)
@@ -96,16 +100,60 @@ class CreateAppointmentActivity : AppCompatActivity() {
             ) {
                 if (response.isSuccessful) { //200...300
                     val specialties = response.body() //arraylist de especialidades objetos
-                    val specialtyOptions = ArrayList<String>() //arraylist de cadenas
 
-                    specialties?.forEach {   // iteramos sobre cada especialidad para sacar el name y guardarlo en specialtyOptions
-                        specialtyOptions.add(it.name)
+                    spinnerSpecialties.adapter = specialties?.let {
+                        ArrayAdapter<Specialty>(
+                            this@CreateAppointmentActivity,
+                            android.R.layout.simple_list_item_1,
+                            it
+                        )
                     }
-                    spinnerSpecialties.adapter = ArrayAdapter<String>(
-                        this@CreateAppointmentActivity,
-                        android.R.layout.simple_list_item_1,
-                        specialtyOptions
-                    )
+                }
+            }
+
+        })
+    }
+
+    private fun listenSpecialtiesChanges(){
+        // escuchador con onItemSelectedListener
+        spinnerSpecialties.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(adapter: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val specialty = adapter?.getItemAtPosition(position) as Specialty
+                loadDoctors(specialty.id)
+            }
+
+        }
+    }
+
+    private fun loadDoctors(specialtyId: Int) {
+        val call = apiService.getDoctors(specialtyId)
+        call.enqueue(object: Callback<ArrayList<Doctor>>{
+            override fun onFailure(call: Call<ArrayList<Doctor>>, t: Throwable) {
+                Toast.makeText(
+                    this@CreateAppointmentActivity,
+                    getString(R.string.error_loading_doctors),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+
+            override fun onResponse(
+                call: Call<ArrayList<Doctor>>,
+                response: Response<ArrayList<Doctor>>
+            ) {
+                if (response.isSuccessful) { //200...300
+                    val doctors = response.body() //arraylist de especialidades objetos
+
+                    spinnerDoctors.adapter = doctors?.let {
+                        ArrayAdapter<Doctor>(
+                            this@CreateAppointmentActivity,
+                            android.R.layout.simple_list_item_1,
+                            it
+                        )
+                    }
                 }
             }
 
