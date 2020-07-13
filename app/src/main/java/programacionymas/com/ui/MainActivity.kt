@@ -38,10 +38,10 @@ class MainActivity : AppCompatActivity() {
         // files
 
         /*val preferences = getSharedPreferences("general", Context.MODE_PRIVATE)
-        val session = preferences.getBoolean("session", false)
+        val session = preferences.getBoolean("session", false)*/
         val preferences = PreferenceHelper.defaultPrefs(this)
             if (preferences["jwt", ""].contains("."))
-            goToMenuActivity()*/
+            goToMenuActivity()
 
         btnLogin.setOnClickListener {
             // validate
@@ -59,7 +59,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun performLogin() {
-        val call = apiService.postLogin(etEmail.text.toString(), etPassword.text.toString())
+        val email = etEmail.text.toString()
+        val password = etPassword.text.toString()
+
+        // validacion de campos vacios
+        if (email.trim().isEmpty() || password.trim().isEmpty()) {
+            toast(getString(R.string.error_empty_credentials))
+            //hacemos return para que no continue y se haga una peticion innecesaria al servidor
+            return
+        }
+
+        val call = apiService.postLogin(email, password)
         call.enqueue(object: Callback<LoginResponse> {
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                 toast(t.localizedMessage)
@@ -74,6 +84,7 @@ class MainActivity : AppCompatActivity() {
                     }
                     if (loginResponse.success) {
                         createSessionPreference(loginResponse.jwt)
+                        toast(getString(R.string.welcome_name, loginResponse.user.name))
                         goToMenuActivity()
                     } else {
                         toast(getString(R.string.error_invalid_credentials))

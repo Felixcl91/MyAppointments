@@ -1,33 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/createAppointmentLinearLayout"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/createAppointmentLinearLayout"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:animateLayoutChanges="true"
+android:background="@drawable/bg_gradient"
+android:gravity="center"
+android:orientation="vertical"
+android:padding="16dp"
+tools:context=".ui.MainActivity">
+
+<TextView
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:animateLayoutChanges="true"
-    android:background="@drawable/bg_gradient"
+    android:layout_height="60dp"
     android:gravity="center"
-    android:orientation="vertical"
-    android:padding="16dp"
-    tools:context=".ui.MainActivity">
+    android:text="@string/label_create_appoinment"
+    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+    android:textColor="@color/white" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:gravity="center"
-        android:text="@string/label_create_appoinment"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="@color/white" />
+<androidx.cardview.widget.CardView
+    android:id="@+id/cvStep1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:elevation="8dp"
+    app:cardCornerRadius="8dp"
+    app:contentPadding="12dp">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cvStep1"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:elevation="8dp"
-        app:cardCornerRadius="8dp"
-        app:contentPadding="12dp">
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/label_description"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <EditText
+            android:id="@+id/etDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/label_speciality"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <Spinner
+            android:id="@+id/spinnerSpecialties"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/label_type"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <RadioGroup
+            android:id="@+id/radioGroupType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:orientation="vertical"
+            android:checkedButton="@id/rbType1"
+            >
+
+            <RadioButton
+                android:id="@+id/rbType1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/type1"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <RadioButton
+                android:id="@+id/rbType2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/type2"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <RadioButton
+                android:id="@+id/rbType3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/type3"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <Button
+                android:id="@+id/btnNext"
+                style="@style/MenuButton"
+                android:layout_width="match_parent"
+                android:layout_marginTop="14dp"
+                android:background="@color/colorAccent"
+                android:drawableEnd="@drawable/ic_baseline_navigate_next"
+                android:text="@string/btn_next"
+                android:textColor="@color/white" />
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
+
+<androidx.cardview.widget.CardView
+    android:id="@+id/cvStep2"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:elevation="8dp"
+    android:visibility="gone"
+    tools:visibility="visible"
+    app:cardCornerRadius="8dp"
+    app:contentPadding="12dp">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -38,24 +137,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@string/label_description"
-                android:textColor="@color/colorPrimaryDark" />
-
-            <EditText
-                android:id="@+id/etDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorPrimaryDark" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/label_speciality"
-                android:textColor="@color/colorPrimaryDark" />
+                android:text="@string/label_doctor" />
 
             <Spinner
-                android:id="@+id/spinnerSpecialties"
+                android:id="@+id/spinnerDoctors"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
@@ -63,333 +148,287 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@string/label_type"
+                android:text="@string/schedule_date"
                 android:textColor="@color/colorPrimaryDark" />
 
-            <RadioGroup
-                android:id="@+id/radioGroupType"
+            <EditText
+                android:id="@+id/etScheduledDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:orientation="vertical"
-                android:checkedButton="@id/rbType1"
-                >
+                android:clickable="true"
+                android:focusable="false"
+                android:inputType="date"
+                android:maxLines="1"
+                android:onClick="onclickScheduledDate"
+                tools:ignore="OnClick" />
 
-                <RadioButton
-                    android:id="@+id/rbType1"
-                    android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/tvSelectDoctorAndDate"
+                android:textColor="@color/colorAccent"
+                android:layout_margin="6dp"
+                android:text="@string/label_select_doctor_and_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/tvNotAvailableHours"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="@string/label_not_available_hours"
+                android:layout_margin="6dp"
+                android:visibility="gone"
+                tools:visibility="visible"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/radioGroupLeft"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:checked="true"
-                    android:text="@string/type1"
-                    android:textColor="@color/colorPrimaryDark" />
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-                <RadioButton
-                    android:id="@+id/rbType2"
-                    android:layout_width="wrap_content"
+                    <RadioButton
+                        android:visibility="gone"
+                        tools:visibility="visible"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/time1"
+                        android:textColor="@color/colorPrimaryDark" />
+
+                    <RadioButton
+                        android:visibility="gone"
+                        tools:visibility="visible"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/time3"
+                        android:textColor="@color/colorPrimaryDark" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/radioGroupRight"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/type2"
-                    android:textColor="@color/colorPrimaryDark" />
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-                <RadioButton
-                    android:id="@+id/rbType3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/type3"
-                    android:textColor="@color/colorPrimaryDark" />
+                    <RadioButton
+                        android:visibility="gone"
+                        tools:visibility="visible"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/time2"
+                        android:textColor="@color/colorPrimaryDark" />
 
-                <Button
-                    android:id="@+id/btnNext"
-                    style="@style/MenuButton"
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="14dp"
-                    android:background="@color/colorAccent"
-                    android:drawableEnd="@drawable/ic_baseline_navigate_next"
-                    android:text="@string/btn_next"
-                    android:textColor="@color/white" />
+                    <RadioButton
+                        android:visibility="gone"
+                        tools:visibility="visible"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/time4"
+                        android:textColor="@color/colorPrimaryDark" />
 
-            </RadioGroup>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnNext2"
+                style="@style/MenuButton"
+                android:layout_width="match_parent"
+                android:layout_marginTop="14dp"
+                android:background="@color/colorAccent"
+                android:drawableEnd="@drawable/ic_baseline_navigate_next"
+                android:text="@string/btn_next"
+                android:textColor="@color/white"  />
 
         </LinearLayout>
 
-    </androidx.cardview.widget.CardView>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cvStep2"
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.cardview.widget.CardView>
+
+<androidx.cardview.widget.CardView
+    android:id="@+id/cvStep3"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:elevation="8dp"
+    android:visibility="gone"
+    app:cardCornerRadius="8dp"
+    app:contentPadding="12dp">
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:elevation="8dp"
-        android:visibility="gone"
-        app:cardCornerRadius="8dp"
-        app:contentPadding="12dp">
+        android:layout_height="wrap_content">
 
-        <androidx.core.widget.NestedScrollView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <LinearLayout
+            <TextView
+                android:text="@string/label_confirm_appointment_data"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:text="@string/label_confirm_appointment_descrip"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/label_doctor" />
-
-                <Spinner
-                    android:id="@+id/spinnerDoctors"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_weight="1"
+                    />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/tvConfirmDescription"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/schedule_date"
-                    android:textColor="@color/colorPrimaryDark" />
-
-                <EditText
-                    android:id="@+id/etScheduledDate"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:clickable="true"
-                    android:focusable="false"
-                    android:inputType="date"
-                    android:maxLines="1"
-                    android:onClick="onclickScheduledDate"
-                    tools:ignore="OnClick" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:id="@+id/radioGroupLeft"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <RadioButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/time1"
-                            android:textColor="@color/colorPrimaryDark" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/radioGroupRight"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <RadioButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/time1"
-                            android:textColor="@color/colorPrimaryDark" />
-
-                    </LinearLayout>
-
-
-                </LinearLayout>
-
-                <Button
-                    android:id="@+id/btnNext2"
-                    style="@style/MenuButton"
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="14dp"
-                    android:background="@color/colorAccent"
-                    android:drawableEnd="@drawable/ic_baseline_navigate_next"
-                    android:text="@string/btn_next"
-                    android:textColor="@color/white"  />
+                    android:layout_weight="1"
+                    tools:text="Dolor de cabeza"/>
 
             </LinearLayout>
 
-
-        </androidx.core.widget.NestedScrollView>
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cvStep3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:elevation="8dp"
-        android:visibility="gone"
-        app:cardCornerRadius="8dp"
-        app:contentPadding="12dp">
-
-        <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
             <LinearLayout
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="horizontal">
 
                 <TextView
-                    android:text="@string/label_confirm_appointment_data"
-                    android:layout_width="match_parent"
+                    android:text="@string/label_confirm_appointment_specialty"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold"/>
+                    android:layout_weight="1"
+                    />
 
-                <LinearLayout
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/tvConfirmSpecialty"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:text="@string/label_confirm_appointment_descrip"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        />
-
-                    <TextView
-                        android:id="@+id/tvConfirmDescription"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        tools:text="Dolor de cabeza"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:text="@string/label_confirm_appointment_specialty"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        />
-
-                    <TextView
-                        android:id="@+id/tvConfirmSpecialty"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        tools:text="Oftalmología"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:text="@string/label_confirm_appointment_type"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        />
-
-                    <TextView
-                        android:id="@+id/tvConfirmType"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        tools:text="Consulta"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:text="@string/label_confirm_appointment_doctor"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        />
-
-                    <TextView
-                        android:id="@+id/tvConfirmDoctor"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        tools:text="Médico test"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:text="@string/label_confirm_appointment_date"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        />
-
-                    <TextView
-                        android:id="@+id/tvConfirmDate"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        tools:text="29/12/2020"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:text="@string/label_confirm_appointment_time"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        />
-
-                    <TextView
-                        android:id="@+id/tvConfirmTime"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        tools:text="4:30 PM"/>
-
-                </LinearLayout>
-
-                <Button
-                    android:id="@+id/btnConfirm"
-                    style="@style/MenuButton"
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="14dp"
-                    android:background="@color/colorAccent"
-                    android:drawableEnd="@drawable/ic_check"
-                    android:text="@string/btn_conf"
-                    android:textColor="@color/white"  />
+                    android:layout_weight="1"
+                    tools:text="Oftalmología"/>
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-        </androidx.core.widget.NestedScrollView>
+                <TextView
+                    android:text="@string/label_confirm_appointment_type"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    />
 
-    </androidx.cardview.widget.CardView>
+                <TextView
+                    android:id="@+id/tvConfirmType"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    tools:text="Consulta"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="@string/label_confirm_appointment_doctor"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    />
+
+                <TextView
+                    android:id="@+id/tvConfirmDoctor"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    tools:text="Médico test"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="@string/label_confirm_appointment_date"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    />
+
+                <TextView
+                    android:id="@+id/tvConfirmDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    tools:text="29/12/2020"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="@string/label_confirm_appointment_time"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    />
+
+                <TextView
+                    android:id="@+id/tvConfirmTime"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    tools:text="4:30 PM"/>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnConfirm"
+                style="@style/MenuButton"
+                android:layout_width="match_parent"
+                android:layout_marginTop="14dp"
+                android:background="@color/colorAccent"
+                android:drawableEnd="@drawable/ic_check"
+                android:text="@string/btn_conf"
+                android:textColor="@color/white"  />
+
+        </LinearLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.cardview.widget.CardView>
 
 </LinearLayout>

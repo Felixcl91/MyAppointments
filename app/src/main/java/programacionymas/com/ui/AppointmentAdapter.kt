@@ -8,15 +8,17 @@ import kotlinx.android.synthetic.main.item_appointment.view.*
 import programacionymas.com.R
 import programacionymas.com.model.Appointment
 
-class AppointmentAdapter(private val appointments: ArrayList<Appointment>)
+class AppointmentAdapter
     : RecyclerView.Adapter<AppointmentAdapter.ViewHolder>() {
+
+    var appointments = ArrayList<Appointment>()
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(appointment: Appointment) {
             with (itemView) {
                 tvAppointmentId.text = context.getString(R.string.item_appointment_id, appointment.id)
-                tvDoctorName.text = appointment.doctorName
+                tvDoctorName.text = appointment.doctor.name
                 tvScheduledDate.text = context.getString(R.string.item_appointment_date, appointment.scheduledDate)
                 tvScheduledTime.text = context.getString(R.string.item_appointment_time, appointment.scheduledTime)
             }
